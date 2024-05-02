@@ -5,9 +5,9 @@ import { MenuIcon } from 'lucide-react'
 
 export default function Header() {
     return (
-        <Card>
+        <Card className="rounded-t-none">
             <CardContent className="p-5 flex justify-between">
-                <Image src="" height={18} width={120} alt="Logo" />
+                <Image src="/Logo.png" height={200} width={200} alt="Logo" />
                 <Button variant="outline" size="icon">
                     <MenuIcon size={26} />
                 </Button>

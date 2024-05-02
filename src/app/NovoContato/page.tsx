@@ -14,7 +14,7 @@ import { useForm } from "react-hook-form"
 import { z } from 'zod'
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Select, SelectContent, SelectItem, SelectTrigger } from "../_components/ui/select"
-import { SelectValue } from "@radix-ui/react-select"
+import { SelectValue } from "../_components/ui/select"
 import formatPhone from "../_lib/format-phone"
 import logo from '../../../Public/Logo.png'
 
