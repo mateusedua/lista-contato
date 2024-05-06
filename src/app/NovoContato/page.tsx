@@ -16,7 +16,6 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { Select, SelectContent, SelectItem, SelectTrigger } from "../_components/ui/select"
 import { SelectValue } from "../_components/ui/select"
 import formatPhone from "../_lib/format-phone"
-import logo from '../../../Public/Logo.png'
 
 const formSchema = z.object({
     nome: z.string().trim().min(1, "Campo obrigatorio"),
@@ -48,7 +47,7 @@ const NovoContato = () => {
             <div className="flex justify-center">
                 <div className="w-full max-w-lg mt-10">
                     <div className="flex justify-center mb-7">
-                        <Image src={logo} height={200} width={200} alt="Logo" />
+                        <Image src='/Logo.png' height={200} width={200} alt="Logo" />
                     </div>
 
                     <Form {...form}>
