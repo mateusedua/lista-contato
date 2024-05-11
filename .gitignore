@@ -6,6 +6,9 @@
 .pnp.js
 .yarn/install-state.gz
 
+#vscode
+.vscode
+
 # testing
 /coverage
 
@@ -34,7 +37,3 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-<<<<<<< HEAD
-=======
-.wrangler
->>>>>>> 4ec1ff30ba0bd1a38d249e4d5205bb44435ee7eb
