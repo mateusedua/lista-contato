@@ -50,8 +50,8 @@ const Cadastro = () => {
     }
 
     return (
-        <div className='flex justify-center'>
-            <div className='w-full max-w-lg mt-16'>
+        <div className='flex justify-center h-[100vh] items-center'>
+            <div className='w-full max-w-lg'>
                 <div className="flex justify-center mb-7">
                     <Image src='/Logo.png' height={200} width={200} alt="Logo" />
                 </div>
