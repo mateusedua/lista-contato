@@ -8,7 +8,7 @@ const NovoContato = () => {
     const router = useRouter()
 
     return (
-        <Button onClick={() => router.push('/NovoContato')}>Novo Contato</Button>
+        <Button onClick={() => router.push('/Contato')}>Novo Contato</Button>
     )
 }
 
