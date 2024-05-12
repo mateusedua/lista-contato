@@ -5,3 +5,8 @@ export type Contacts = {
     email: string,
     celular: string
 }
+
+export type CategoriaProps = {
+    id_categoria: string,
+    categoria: string
+}
