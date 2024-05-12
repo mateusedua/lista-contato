@@ -1,7 +1,8 @@
-export type Contacts = {
+export type ContatoProps = {
     id_contato: string,
-    name: string,
+    id_categoria: string,
     categoria: string,
+    nome: string,
     email: string,
     celular: string
 }
