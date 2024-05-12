@@ -42,7 +42,11 @@ const Contato = ({ params }: any) => {
     })
 
 
-    const handleSubmit = (data: z.infer<typeof formSchema>) => {
+    const handleSubmitCadastrar = (data: z.infer<typeof formSchema>) => {
+        console.log(data)
+    }
+
+    const handleSubmitAlterar = (data: z.infer<typeof formSchema>) => {
         console.log(data)
     }
 
@@ -62,14 +66,14 @@ const Contato = ({ params }: any) => {
                     <div className="flex justify-center mb-7">
                         {
                             params.slug === undefined ?
-                                <h1 className="">Novo Contato</h1>
+                                <h1 className="font-bold text-3xl">Novo Contato</h1>
                                 :
-                                <h1>Alterar Contato</h1>
+                                <h1 className="font-bold text-3xl">Alterar Contato</h1>
                         }
                     </div>
 
                     <Form {...form}>
-                        <form onSubmit={form.handleSubmit(handleSubmit)} className="px-5 flex flex-col gap-4">
+                        <form onSubmit={form.handleSubmit(params.slug === undefined ? handleSubmitCadastrar : handleSubmitAlterar)} className="px-5 flex flex-col gap-4">
                             <FormField
                                 control={form.control}
                                 name="nome"
@@ -132,7 +136,14 @@ const Contato = ({ params }: any) => {
                                     </FormItem>
                                 )}
                             />
-                            <Button type="submit" className="h-[50px]">Cadastrar</Button>
+                            <Button type="submit" className="text-md h-[50px]">
+                                {
+                                    params.slug === undefined ?
+                                        <p>Cadastrar</p>
+                                        :
+                                        <p>Alterar</p>
+                                }
+                            </Button>
                         </form>
                     </Form>
                 </div>
