@@ -16,6 +16,9 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { Select, SelectContent, SelectItem, SelectTrigger } from "@/app/_components/ui/select"
 import { SelectValue } from "@/app/_components/ui/select"
 import formatPhone from "@/app/_lib/format-phone"
+import selectCategoria from "./_actions/select-categoria"
+import { useEffect, useState } from "react"
+import { CategoriaProps } from "@/app/_helpers/interfaces"
 
 const formSchema = z.object({
     nome: z.string().trim().min(1, "Campo obrigatorio"),
@@ -25,6 +28,8 @@ const formSchema = z.object({
 })
 
 const Contato = ({ params }: any) => {
+
+    const [categoria, setCategoria] = useState([])
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -40,6 +45,14 @@ const Contato = ({ params }: any) => {
     const handleSubmit = (data: z.infer<typeof formSchema>) => {
         console.log(data)
     }
+
+    useEffect(() => {
+        const fecthData = async () => {
+            const result = await selectCategoria()
+            setCategoria(result)
+        }
+        fecthData()
+    }, [])
 
     return (
         <div>
@@ -107,6 +120,11 @@ const Contato = ({ params }: any) => {
                                                 </SelectTrigger>
                                             </FormControl>
                                             <SelectContent>
+                                                {
+                                                    categoria?.map((item: CategoriaProps) => (
+                                                        <SelectItem value={item.id_categoria} key={item.id_categoria}>{item.categoria}</SelectItem>
+                                                    ))
+                                                }
                                                 <SelectItem value="1">Pessoal</SelectItem>
                                             </SelectContent>
                                         </Select>
