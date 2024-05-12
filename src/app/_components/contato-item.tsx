@@ -1,6 +1,6 @@
 'use client'
 
-import { Contacts } from "../_helpers/interfaces";
+import { ContatoProps } from "../_helpers/interfaces";
 import {
     Card,
     CardContent,
@@ -11,7 +11,7 @@ import { Button } from "./ui/button";
 import { SquarePen, Trash } from 'lucide-react';
 
 interface ContactsProps {
-    contacts: Contacts
+    contacts: ContatoProps
 }
 
 const ContatoItem = ({ contacts }: ContactsProps) => {
@@ -25,7 +25,7 @@ const ContatoItem = ({ contacts }: ContactsProps) => {
             <CardContent className="flex justify-between">
                 <div className="flex gap-2 flex-col">
                     <div className="flex gap-2">
-                        <h2 className="font-bold">{contacts.name}</h2>
+                        <h2 className="font-bold">{contacts.nome}</h2>
                         <Badge>{contacts.categoria}</Badge>
                     </div>
                     <h3>{contacts.email}</h3>
