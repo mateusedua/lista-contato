@@ -9,12 +9,15 @@ import {
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
 import { SquarePen, Trash } from 'lucide-react';
+import { useRouter } from "next/navigation";
 
 interface ContactsProps {
     contacts: ContatoProps
 }
 
 const ContatoItem = ({ contacts }: ContactsProps) => {
+
+    const router = useRouter()
 
     return (
         <Card className="mt-5">
@@ -32,7 +35,7 @@ const ContatoItem = ({ contacts }: ContactsProps) => {
                     <h3>{contacts.celular}</h3>
                 </div>
                 <div className="flex gap-2 items-center">
-                    <Button variant="outline" size="icon">
+                    <Button variant="outline" size="icon" onClick={() => router.push(`/Contato/${contacts.id_contato}`)}>
                         <SquarePen />
                     </Button>
                     <Button variant="outline" size="icon">
