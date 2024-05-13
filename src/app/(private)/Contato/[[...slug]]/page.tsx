@@ -17,6 +17,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger } from "@/app/_compone
 import { SelectValue } from "@/app/_components/ui/select"
 import formatPhone from "@/app/_lib/format-phone"
 import selectCategoria from "./_actions/select-categoria"
+import selectContato from "./_actions/select-contato"
 import { useEffect, useState } from "react"
 import { CategoriaProps } from "@/app/_helpers/interfaces"
 
@@ -41,7 +42,6 @@ const Contato = ({ params }: any) => {
         }
     })
 
-
     const handleSubmitCadastrar = (data: z.infer<typeof formSchema>) => {
         console.log(data)
     }
@@ -54,6 +54,18 @@ const Contato = ({ params }: any) => {
         const fecthData = async () => {
             const result = await selectCategoria()
             setCategoria(result)
+
+            if (params.slug !== undefined) {
+                const oneContato = await selectContato(params.slug[0])
+                if (oneContato.status === 200) {
+                    form.reset({
+                        nome: oneContato.data.nome,
+                        email: oneContato.data.email,
+                        telefone: oneContato.data.celular,
+                        categoria: oneContato.data.id_categoria
+                    })
+                }
+            }
         }
         fecthData()
     }, [])
@@ -105,6 +117,7 @@ const Contato = ({ params }: any) => {
                                     <FormItem>
                                         <FormControl>
                                             <Input placeholder="Telefone"
+                                                value={field.value}
                                                 onChange={(e) => field.onChange(e.target.value = formatPhone(e.target.value))}
                                                 className="h-[50px]" />
                                         </FormControl>
@@ -129,7 +142,6 @@ const Contato = ({ params }: any) => {
                                                         <SelectItem value={item.id_categoria} key={item.id_categoria}>{item.categoria}</SelectItem>
                                                     ))
                                                 }
-                                                <SelectItem value="1">Pessoal</SelectItem>
                                             </SelectContent>
                                         </Select>
                                         <FormMessage />
