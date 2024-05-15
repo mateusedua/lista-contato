@@ -1,5 +1,4 @@
-
-
+'use server'
 
 const selectCategoria = async () => {
     const result = await fetch(`${process.env.API_URL}api/categoria`)
