@@ -1,6 +1,6 @@
 export type ContatoProps = {
-    id_contato: string,
-    id_categoria: string,
+    id_contato?: string,
+    id_categoria?: string,
     categoria: string,
     nome: string,
     email: string,
