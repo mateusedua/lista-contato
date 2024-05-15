@@ -1,5 +1,4 @@
-
-
+'use server'
 
 const selectContato = async (idcontato: string) => {
     const result = await fetch(`${process.env.API_URL}api/contato/one/${idcontato}`)
