@@ -3,6 +3,7 @@ import Search from "./_components/Search";
 import NovoContato from "./_components/NovoContato";
 import ContatoItem from "@/app/_components/contato-item";
 import { ContatoProps } from "@/app/_helpers/interfaces";
+import { Toaster } from "sonner";
 
 export const runtime = 'edge';
 
@@ -31,6 +32,7 @@ export default async function Home() {
           }
         </div>
       </div>
+      <Toaster richColors />
     </div>
   );
 }
