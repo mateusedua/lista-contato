@@ -207,9 +207,6 @@ const Contato = ({ params }: any) => {
                                         <AlertDialogContent className="w-[90%]">
                                             <AlertDialogHeader>
                                                 <AlertDialogTitle>Deseja alterar realmente o contato?</AlertDialogTitle>
-                                                <AlertDialogDescription>
-                                                    Essa ação não terá volta!
-                                                </AlertDialogDescription>
                                             </AlertDialogHeader>
                                             <AlertDialogFooter>
                                                 <AlertDialogCancel>Cancelar</AlertDialogCancel>
