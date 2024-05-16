@@ -18,6 +18,7 @@ import formatPhone from "@/app/_lib/format-phone"
 import selectCategoria from "./_actions/select-categoria"
 import selectContato from "./_actions/select-contato"
 import alterarContato from "./_actions/alterar-contato"
+import cadastrarContato from "./_actions/cadastrar-contato"
 import { useEffect, useState } from "react"
 import { CategoriaProps } from "@/app/_helpers/interfaces"
 import { useRouter } from "next/navigation"
@@ -49,8 +50,26 @@ const Contato = ({ params }: any) => {
         }
     })
 
-    const handleSubmitCadastrar = (data: z.infer<typeof formSchema>) => {
-        console.log(data)
+    const handleSubmitCadastrar = async (data: z.infer<typeof formSchema>) => {
+        try {
+            setIsLoading(true)
+            const result = await cadastrarContato(data)
+
+            if (result.status === 200 && result.data === true) {
+                toast.success('Contato Cadastrado!', {
+                    duration: 1000,
+                    onAutoClose: () => router.push('/')
+                })
+            }
+            if (result.status !== 200) {
+                toast.error("Algo deu errado ao tentar cadastrar o contato! Tente novamente!")
+            }
+        } catch (err) {
+            console.log(err)
+            toast.error("Algo deu errado ao tentar cadastrar o contato! Tente novamente!")
+        } finally {
+            setIsLoading(false)
+        }
     }
 
     const handleSubmitAlterar = async (data: z.infer<typeof formSchema>) => {
@@ -68,7 +87,7 @@ const Contato = ({ params }: any) => {
                 toast.error("Algo deu errado ao tentar alterar o contato! Tente novamente!")
             }
         } catch (err) {
-
+            toast.error("Algo deu errado ao tentar alterar o contato! Tente novamente!")
         } finally {
             setIsLoading(false)
         }
@@ -181,7 +200,7 @@ const Contato = ({ params }: any) => {
                                     <Button className="text-md h-[50px]" type='submit' disabled={isLoading}>Cadastrar</Button>
                                     :
                                     <AlertDialog>
-                                        <AlertDialogTrigger asChild disabled={isLoading}>
+                                        <AlertDialogTrigger asChild>
                                             <Button className="text-md h-[50px]">Alterar</Button>
                                         </AlertDialogTrigger>
                                         <AlertDialogContent className="w-[90%]">
