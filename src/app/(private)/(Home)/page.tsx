@@ -19,7 +19,7 @@ export default async function Home() {
           <Search />
         </div>
         <div className="flex mt-6  items-center w-full justify-between lg:max-w-xl xl:max-w-3xl">
-          <h2 className="text-xl font-bold">3 contatos</h2>
+          <h2 className="text-xl font-bold">{contatos.length} contatos</h2>
           <NovoContato />
         </div>
         <div className="w-full mt-6 lg:max-w-xl xl:max-w-3xl">
