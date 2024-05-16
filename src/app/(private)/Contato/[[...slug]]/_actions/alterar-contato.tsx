@@ -5,7 +5,7 @@ import { revalidatePath } from "next/cache"
 
 const alterarContato = async (contato: ContatoProps, idcontato: string) => {
     const result = await fetch(`${process.env.API_URL}api/contato/alterar`, {
-        method: 'POST',
+        method: 'PUT',
         body: JSON.stringify({
             data: contato,
             idcontato: idcontato
