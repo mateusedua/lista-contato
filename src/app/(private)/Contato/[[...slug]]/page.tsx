@@ -25,6 +25,7 @@ import { useRouter } from "next/navigation"
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/app/_components/ui/alert-dialog"
 import { Toaster, toast } from "sonner"
 import Link from "next/link"
+import { MoveLeft } from 'lucide-react';
 
 const formSchema = z.object({
     nome: z.string().trim().min(1, "Campo obrigatorio"),
@@ -129,7 +130,7 @@ const Contato = ({ params }: any) => {
                         }
                     </div>
                     <div className="px-5 mb-3">
-                        <Link href='/'>Voltar</Link>
+                        <Link href='/' className="flex gap-2 text-primary font-bold"><MoveLeft />Voltar</Link>
                     </div>
                     <Form {...form}>
                         <form onSubmit={form.handleSubmit(params.slug === undefined ? handleSubmitCadastrar : handleSubmitAlterar)} className="px-5 flex flex-col gap-4">
