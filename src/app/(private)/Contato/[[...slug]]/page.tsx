@@ -22,7 +22,7 @@ import cadastrarContato from "./_actions/cadastrar-contato"
 import { useEffect, useState } from "react"
 import { CategoriaProps } from "@/app/_helpers/interfaces"
 import { useRouter } from "next/navigation"
-import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/app/_components/ui/alert-dialog"
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/app/_components/ui/alert-dialog"
 import { Toaster, toast } from "sonner"
 import Link from "next/link"
 import { MoveLeft } from 'lucide-react';
