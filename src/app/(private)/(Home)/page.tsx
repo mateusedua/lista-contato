@@ -7,9 +7,15 @@ import { Toaster } from "sonner";
 
 export const runtime = 'edge';
 
-export default async function Home() {
+export default async function Home({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | string[] | undefined }
+}) {
 
-  const result = await fetch(`${process.env.API_URL}api/contato/09f02ace9d36ad7a583e4fb252fb957e`)
+  const search = searchParams.search === undefined ? "" : "/" + searchParams.search
+
+  const result = await fetch(`${process.env.API_URL}api/contato/09f02ace9d36ad7a583e4fb252fb957e/search${search}`)
   const contatos = await result.json();
 
   return (

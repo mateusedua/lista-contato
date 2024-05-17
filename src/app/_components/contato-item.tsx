@@ -30,7 +30,10 @@ const ContatoItem = ({ contacts }: ContactsProps) => {
             setIsLoading(true)
             const result = await deleteContato(idContato)
             if (result.status === 200 && result.data === true) {
-                toast.success('Contato Deletado!')
+                toast.success('Contato Deletado!', {
+                    duration: 1000,
+                    onAutoClose: () => router.push('/')
+                })
             }
             if (result.status !== 200) {
                 toast.error("Algo deu errado ao tentar deletar o contato! Tente novamente!")
