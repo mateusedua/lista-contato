@@ -11,3 +11,10 @@ export type CategoriaProps = {
     id_categoria: string,
     categoria: string
 }
+
+export type UserProps = {
+    nome?: string,
+    email: string,
+    password: string,
+    cofirmadPassword?: string
+}
