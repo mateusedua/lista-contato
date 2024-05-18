@@ -11,6 +11,9 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { LockKeyhole, LockKeyholeOpen } from 'lucide-react';
 import loginUser from './_actions/login-user';
+import { Toaster, toast } from "sonner"
+import { useRouter } from 'next/navigation';
+
 
 const formSchema = z.object({
     email: z
@@ -24,7 +27,10 @@ const formSchema = z.object({
 
 const Login = () => {
 
+    const router = useRouter()
+
     const [open, setOpen] = useState<boolean>(false)
+    const [isLoading, setIsLoading] = useState<boolean>(false)
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -35,7 +41,27 @@ const Login = () => {
     })
 
     const handleSubmit = async (data: z.infer<typeof formSchema>) => {
-        const status = await loginUser(data)
+        try {
+            setIsLoading(true)
+            const status = await loginUser(data)
+            if (status === 404) {
+                return toast.warning("E-mail não encontrado!")
+            }
+            if (status === 400) {
+                return toast.warning("Senha incorreta!")
+            }
+            if (status !== 200) {
+                return toast.error("Erro ao fazer login!")
+            }
+
+            if (status === 200) {
+                return router.push('/')
+            }
+        } catch (err) {
+            return toast.error("Erro ao fazer login!")
+        } finally {
+            setIsLoading(false)
+        }
     }
 
     return (
@@ -83,12 +109,13 @@ const Login = () => {
                         <div className='flex justify-end'>
                             <Link href='/Cadastro'>Fazer Cadastro ?</Link>
                         </div>
-                        <Button type='submit' className='text-md h-[50px]'>
+                        <Button type='submit' className='text-md h-[50px]' disabled={isLoading}>
                             Entrar
                         </Button>
                     </form>
                 </Form>
             </div>
+            <Toaster richColors />
         </div>
     )
 }

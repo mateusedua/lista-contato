@@ -1,6 +1,7 @@
 'use server'
 
 import { UserProps } from "@/app/_helpers/interfaces"
+import { cookies } from "next/headers"
 
 const loginUser = async (user: UserProps) => {
     const result = await fetch(`${process.env.API_URL}api/user/login`, {
@@ -11,7 +12,7 @@ const loginUser = async (user: UserProps) => {
     const data = await result.json()
 
     if (result.status === 200) {
-        console.log(data)
+        cookies().set('token', data)
     }
 
     return result.status
