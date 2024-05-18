@@ -10,6 +10,9 @@ import { Button } from '@/app/_components/ui/button';
 import Link from 'next/link';
 import { useState } from 'react';
 import { LockKeyhole, LockKeyholeOpen } from 'lucide-react';
+import cadastroUser from './_actions/cadastro-user';
+import { Toaster, toast } from "sonner"
+import { useRouter } from 'next/navigation';
 
 const formSchema = z.object({
     nome: z
@@ -37,8 +40,11 @@ const formSchema = z.object({
 
 const Cadastro = () => {
 
+    const router = useRouter()
+
     const [openCadastro, setOpenCadastro] = useState<boolean>(false)
     const [openConfirmacao, setOpenConfirmacao] = useState<boolean>(false)
+    const [isLoading, setIsLoading] = useState<boolean>(false)
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -50,8 +56,29 @@ const Cadastro = () => {
         }
     })
 
-    const handleSubmit = (data: z.infer<typeof formSchema>) => {
-        console.log(data)
+    const handleSubmit = async (data: z.infer<typeof formSchema>) => {
+        try {
+            setIsLoading(true)
+            const status = await cadastroUser(data)
+            if (status === 302) {
+                return toast.warning("E-mail já cadastrado!")
+            }
+            if (status !== 200) {
+                return toast.error("Erro ao cadastrar usuário!")
+            }
+
+            if (status === 200) {
+                return toast.success('Usuário cadastrado!', {
+                    duration: 1000,
+                    onAutoClose: () => router.push('/Login')
+                })
+            }
+
+        } catch (err) {
+            return toast.error("Erro ao cadastrar usuário!")
+        } finally {
+            setIsLoading(false)
+        }
     }
 
     return (
@@ -133,12 +160,13 @@ const Cadastro = () => {
                         <div className='flex justify-end'>
                             <Link href='/Login'>Fazer Login ?</Link>
                         </div>
-                        <Button type='submit' className='h-[50px]'>
+                        <Button type='submit' className='h-[50px]' disabled={isLoading}>
                             Cadastrar
                         </Button>
                     </form>
                 </Form>
             </div>
+            <Toaster richColors />
         </div>
     )
 }
