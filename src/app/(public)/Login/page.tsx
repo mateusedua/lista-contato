@@ -8,6 +8,9 @@ import { Form, FormControl, FormField, FormItem, FormMessage } from '@/app/_comp
 import { Input } from '@/app/_components/ui/input';
 import { Button } from '@/app/_components/ui/button';
 import Link from 'next/link';
+import { useState } from 'react';
+import { LockKeyhole, LockKeyholeOpen } from 'lucide-react';
+
 
 const formSchema = z.object({
     email: z
@@ -20,6 +23,9 @@ const formSchema = z.object({
 })
 
 const Login = () => {
+
+    const [open, setOpen] = useState<boolean>(false)
+
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -58,7 +64,17 @@ const Login = () => {
                             render={({ field }) => (
                                 <FormItem>
                                     <FormControl>
-                                        <Input placeholder='Senha' {...field} className='h-[50px]' />
+                                        <div className='flex relative items-center'>
+                                            <Input placeholder='Senha' {...field} type={open ? 'text' : 'password'} className='h-[50px]' />
+                                            <Button
+                                                type='button'
+                                                variant='ghost'
+                                                className='absolute hover:bg-transparent left-[88%]'
+                                                onClick={() => setOpen(!open)}
+                                            >
+                                                {open ? <LockKeyholeOpen /> : <LockKeyhole />}
+                                            </Button>
+                                        </div>
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>

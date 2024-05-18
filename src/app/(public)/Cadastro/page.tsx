@@ -8,6 +8,8 @@ import { Form, FormControl, FormField, FormItem, FormMessage } from '@/app/_comp
 import { Input } from '@/app/_components/ui/input';
 import { Button } from '@/app/_components/ui/button';
 import Link from 'next/link';
+import { useState } from 'react';
+import { LockKeyhole, LockKeyholeOpen } from 'lucide-react';
 
 const formSchema = z.object({
     nome: z
@@ -34,6 +36,9 @@ const formSchema = z.object({
 )
 
 const Cadastro = () => {
+
+    const [openCadastro, setOpenCadastro] = useState<boolean>(false)
+    const [openConfirmacao, setOpenConfirmacao] = useState<boolean>(false)
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -87,7 +92,17 @@ const Cadastro = () => {
                             render={({ field }) => (
                                 <FormItem>
                                     <FormControl>
-                                        <Input placeholder='Senha' {...field} className='h-[50px]' />
+                                        <div className='flex relative items-center'>
+                                            <Input placeholder='Senha' {...field} type={openCadastro ? 'text' : 'password'} className='h-[50px]' />
+                                            <Button
+                                                type='button'
+                                                variant='ghost'
+                                                className='absolute hover:bg-transparent left-[88%]'
+                                                onClick={() => setOpenCadastro(!openCadastro)}
+                                            >
+                                                {openCadastro ? <LockKeyholeOpen /> : <LockKeyhole />}
+                                            </Button>
+                                        </div>
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
@@ -99,7 +114,17 @@ const Cadastro = () => {
                             render={({ field }) => (
                                 <FormItem>
                                     <FormControl>
-                                        <Input placeholder='Confirmação' {...field} className='h-[50px]' />
+                                        <div className='flex relative items-center'>
+                                            <Input placeholder='Confirmação' {...field} type={openConfirmacao ? 'text' : 'password'} className='h-[50px]' />
+                                            <Button
+                                                variant='ghost'
+                                                className='absolute hover:bg-transparent left-[88%]'
+                                                type='button'
+                                                onClick={() => setOpenConfirmacao(!openConfirmacao)}
+                                            >
+                                                {openConfirmacao ? <LockKeyholeOpen /> : <LockKeyhole />}
+                                            </Button>
+                                        </div>
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
