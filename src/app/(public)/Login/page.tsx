@@ -10,7 +10,7 @@ import { Button } from '@/app/_components/ui/button';
 import Link from 'next/link';
 import { useState } from 'react';
 import { LockKeyhole, LockKeyholeOpen } from 'lucide-react';
-
+import loginUser from './_actions/login-user';
 
 const formSchema = z.object({
     email: z
@@ -34,8 +34,8 @@ const Login = () => {
         }
     })
 
-    const handleSubmit = (data: z.infer<typeof formSchema>) => {
-        console.log(data)
+    const handleSubmit = async (data: z.infer<typeof formSchema>) => {
+        const status = await loginUser(data)
     }
 
     return (
