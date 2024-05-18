@@ -21,7 +21,7 @@ const Search = () => {
 
 
         if (!search) {
-            router.push("/")
+            return router.push("/")
         }
 
         router.push(`/?search=${search}`)
