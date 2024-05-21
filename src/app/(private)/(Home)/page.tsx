@@ -4,6 +4,7 @@ import NovoContato from "./_components/NovoContato";
 import ContatoItem from "@/app/_components/contato-item";
 import { ContatoProps } from "@/app/_helpers/interfaces";
 import { Toaster } from "sonner";
+import { cookies } from "next/headers";
 
 export const runtime = 'edge';
 
@@ -13,9 +14,14 @@ export default async function Home({
   searchParams: { [key: string]: string | string[] | undefined }
 }) {
 
+  const token = cookies().get('token');
   const search = searchParams.search === undefined ? "" : "/" + searchParams.search
 
-  const result = await fetch(`${process.env.API_URL}api/contato/09f02ace9d36ad7a583e4fb252fb957e/search${search}`)
+  const result = await fetch(`${process.env.API_URL}api/contato${search}`, {
+    headers: {
+      "Authorization": `Bearer ${token?.value}`
+    }
+  })
   const contatos = await result.json();
 
   return (
