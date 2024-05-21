@@ -27,6 +27,8 @@ import { Toaster, toast } from "sonner"
 import Link from "next/link"
 import { MoveLeft } from 'lucide-react';
 
+export const runtime = 'edge';
+
 const formSchema = z.object({
     nome: z.string().trim().min(1, "Campo obrigatorio"),
     email: z.string().trim().min(1, "Campo obrigatorio").email("E-mail inválido"),
