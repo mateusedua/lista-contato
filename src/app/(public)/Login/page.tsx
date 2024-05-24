@@ -58,6 +58,7 @@ const Login = () => {
                 return router.push('/')
             }
         } catch (err) {
+            console.log(err)
             return toast.error("Erro ao fazer login!")
         } finally {
             setIsLoading(false)
