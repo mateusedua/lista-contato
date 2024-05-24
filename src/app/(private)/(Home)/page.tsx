@@ -17,7 +17,7 @@ export default async function Home({
   const token = cookies().get('token');
   const search = searchParams.search === undefined ? "" : "/" + searchParams.search
 
-  const result = await fetch(`${process.env.API_URL}api/contato${search}`, {
+  const result = await fetch(`${process.env.NEXT_PUBLIC_API_URL}api/contato${search}`, {
     headers: {
       "Authorization": `Bearer ${token?.value}`
     }
