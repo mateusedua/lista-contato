@@ -1,7 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 
-
-
 export async function middleware(request: NextRequest) {
     const token = request.cookies.get("token");
     const path = request.nextUrl.pathname
@@ -11,7 +9,7 @@ export async function middleware(request: NextRequest) {
     }
 
     if (token !== undefined) {
-        const result = await fetch(`${process.env.NEXT_PUBLIC_API_URL}api/user/auth`, {
+        const result = await fetch(`${process.env.API_URL}api/user/auth`, {
             method: "POST",
             headers: {
                 "Authorization": `Bearer ${token?.value}`

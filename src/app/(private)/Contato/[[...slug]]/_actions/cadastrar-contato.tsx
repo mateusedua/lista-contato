@@ -8,7 +8,7 @@ const cadastrarContato = async (contato: ContatoProps) => {
 
     const token = cookies().get('token')
 
-    const result = await fetch(`${process.env.NEXT_PUBLIC_API_URL}api/contato/cadastrar`, {
+    const result = await fetch(`${process.env.API_URL}api/contato/cadastrar`, {
         method: "POST",
         body: JSON.stringify({
             data: contato

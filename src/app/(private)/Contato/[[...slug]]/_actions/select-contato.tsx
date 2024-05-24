@@ -3,10 +3,9 @@
 import { cookies } from "next/headers"
 
 const selectContato = async (idcontato: string) => {
-
     const token = cookies().get('token')
 
-    const result = await fetch(`${process.env.NEXT_PUBLIC_API_URL}api/contato/one/${idcontato}`, {
+    const result = await fetch(`${process.env.API_URL}api/contato/one/${idcontato}`, {
         headers: {
             "Authorization": `Bearer ${token?.value}`
         }

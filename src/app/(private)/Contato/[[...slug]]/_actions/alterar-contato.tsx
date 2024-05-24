@@ -5,10 +5,9 @@ import { revalidatePath } from "next/cache"
 import { cookies } from "next/headers"
 
 const alterarContato = async (contato: ContatoProps, idcontato: string) => {
-
     const token = cookies().get('token')
 
-    const result = await fetch(`${process.env.NEXT_PUBLIC_API_URL}api/contato/alterar`, {
+    const result = await fetch(`${process.env.API_URL}api/contato/alterar`, {
         method: 'PUT',
         body: JSON.stringify({
             data: contato,
