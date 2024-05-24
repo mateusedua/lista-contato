@@ -9,7 +9,7 @@ export async function middleware(request: NextRequest) {
     }
 
     if (token !== undefined) {
-        const result = await fetch(`${process.env.API_URL}api/user/auth`, {
+        const result = await fetch(`https://api-lista-contato.mateuseduardoteuta10.workers.dev/api/user/auth`, {
             method: "POST",
             headers: {
                 "Authorization": `Bearer ${token?.value}`

@@ -7,7 +7,7 @@ import { cookies } from "next/headers"
 const alterarContato = async (contato: ContatoProps, idcontato: string) => {
     const token = cookies().get('token')
 
-    const result = await fetch(`${process.env.API_URL}api/contato/alterar`, {
+    const result = await fetch(`https://api-lista-contato.mateuseduardoteuta10.workers.dev/api/contato/alterar`, {
         method: 'PUT',
         body: JSON.stringify({
             data: contato,

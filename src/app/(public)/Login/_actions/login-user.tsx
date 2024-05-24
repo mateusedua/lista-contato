@@ -4,8 +4,7 @@ import { UserProps } from "@/app/_helpers/interfaces"
 import { cookies } from "next/headers"
 
 const loginUser = async (user: UserProps) => {
-    console.log(process.env.API_URL)
-    const result = await fetch(`${process.env.API_URL}api/user/login`, {
+    const result = await fetch(`https://api-lista-contato.mateuseduardoteuta10.workers.dev/api/user/login`, {
         method: "POST",
         body: JSON.stringify(user)
     })
