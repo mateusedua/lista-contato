@@ -17,7 +17,7 @@ export default async function Home({
   const token = cookies().get('token');
   const search = searchParams.search === undefined ? "" : "/" + searchParams.search
 
-  const result = await fetch(`https://api-lista-contato.mateuseduardoteuta10.workers.dev/api/contato${search}`, {
+  const result = await fetch(`${process.env.API_URL}api/contato${search}`, {
     headers: {
       "Authorization": `Bearer ${token?.value}`
     }
