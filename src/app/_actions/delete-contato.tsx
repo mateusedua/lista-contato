@@ -6,7 +6,7 @@ import { cookies } from "next/headers"
 
 const deleteContato = async (idContato?: string) => {
     const token = cookies().get('token')
-    const result = await fetch(`https://api-lista-contato.mateuseduardoteuta10.workers.dev/api/contato/deletar`, {
+    const result = await fetch(`${process.env.API_URL}api/contato/deletar`, {
         method: 'DELETE',
         body: JSON.stringify({
             idcontato: idContato
