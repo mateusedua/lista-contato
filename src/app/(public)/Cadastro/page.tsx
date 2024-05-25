@@ -124,7 +124,7 @@ const Cadastro = () => {
                                             <Button
                                                 type='button'
                                                 variant='ghost'
-                                                className='absolute hover:bg-transparent left-[88%]'
+                                                className='absolute hover:bg-transparent lg:left-[88%] left-[85%]'
                                                 onClick={() => setOpenCadastro(!openCadastro)}
                                             >
                                                 {openCadastro ? <LockKeyholeOpen /> : <LockKeyhole />}
@@ -145,7 +145,7 @@ const Cadastro = () => {
                                             <Input placeholder='Confirmação' {...field} type={openConfirmacao ? 'text' : 'password'} className='h-[50px]' />
                                             <Button
                                                 variant='ghost'
-                                                className='absolute hover:bg-transparent left-[88%]'
+                                                className='absolute hover:bg-transparent lg:left-[88%] left-[85%]'
                                                 type='button'
                                                 onClick={() => setOpenConfirmacao(!openConfirmacao)}
                                             >
