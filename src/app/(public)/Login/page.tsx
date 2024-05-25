@@ -96,7 +96,7 @@ const Login = () => {
                                             <Button
                                                 type='button'
                                                 variant='ghost'
-                                                className='absolute hover:bg-transparent left-[88%]'
+                                                className='absolute hover:bg-transparent lg:left-[88%] left-[85%]'
                                                 onClick={() => setOpen(!open)}
                                             >
                                                 {open ? <LockKeyholeOpen /> : <LockKeyhole />}
