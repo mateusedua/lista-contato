@@ -5,8 +5,6 @@ import { cookies } from "next/headers"
 
 const loginUser = async (user: UserProps) => {
 
-    console.log("teste")
-
     const result = await fetch(`${process.env.API_URL}api/user/login`, {
         method: "POST",
         body: JSON.stringify(user)
