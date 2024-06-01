@@ -1,4 +1,4 @@
-"use client"
+'use client'
 import { Input } from "@/app/_components/ui/input"
 import { Button } from "@/app/_components/ui/button"
 import {
@@ -8,7 +8,6 @@ import {
     FormControl,
     FormMessage
 } from "@/app/_components/ui/form"
-import Header from "@/app/_components/Header"
 import { useForm } from "react-hook-form"
 import { z } from 'zod'
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -26,8 +25,6 @@ import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, 
 import { Toaster, toast } from "sonner"
 import Link from "next/link"
 import { MoveLeft } from 'lucide-react';
-
-export const runtime = 'edge';
 
 const formSchema = z.object({
     nome: z.string().trim().min(1, "Campo obrigatorio"),
@@ -120,7 +117,6 @@ const Contato = ({ params }: any) => {
 
     return (
         <div>
-            <Header />
             <div className="flex justify-center">
                 <div className="w-full max-w-lg mt-20">
                     <div className="flex justify-center mb-7">
