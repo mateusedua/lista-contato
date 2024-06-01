@@ -1,3 +1,5 @@
+'use server'
+
 import Header from "@/app/_components/Header";
 import Search from "./_components/Search";
 import NovoContato from "./_components/NovoContato";
@@ -5,8 +7,6 @@ import ContatoItem from "@/app/_components/contato-item";
 import { ContatoProps } from "@/app/_helpers/interfaces";
 import { Toaster } from "sonner";
 import { cookies } from "next/headers";
-
-export const runtime = 'edge';
 
 export default async function Home({
   searchParams,
