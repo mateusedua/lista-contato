@@ -5,7 +5,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel,
 import { useRouter } from "next/navigation"
 import logout from "../_actions/logout"
 
-const DropDoewnMenuAcount = () => {
+const DropDoewnMenuAcount = ({ nome }: { nome: string }) => {
 
     const router = useRouter()
 
@@ -18,11 +18,11 @@ const DropDoewnMenuAcount = () => {
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
                 <Avatar className="cursor-pointer">
-                    <AvatarFallback>T</AvatarFallback>
+                    <AvatarFallback>{nome.charAt(0)}</AvatarFallback>
                 </Avatar>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-48">
-                <DropdownMenuLabel>teste</DropdownMenuLabel>
+                <DropdownMenuLabel>{nome}</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem className="cursor-pointer" onClick={handleLogout}>
                     <span>Sair</span>
